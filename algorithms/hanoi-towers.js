@@ -8,14 +8,12 @@ function solveHanoiTowers(numberOfDisks, fromRod, toRod, auxRod, onMoveCb) {
     solveHanoiTowers(numberOfDisks - 1, auxRod, toRod, fromRod, onMoveCb);
 }
 
-function solve(numberOfDisks, fromRod, toRod, auxRod, onMoveCb) {
-    if (!onMoveCb || typeof(onMoveCb) === 'function') {
-        onMoveCb = (disk, from, to) => console.log(`Disk ${disk} from ${from} to ${to}.`);
-    }
-
-    return solveHanoiTowers(numberOfDisks, fromRod, toRod, auxRod, onMoveCb);
-}
-
 module.exports = {
-    solveHanoiTowers: solve
+    solveHanoiTowers: function(numberOfDisks, fromRod, toRod, auxRod, onMoveCb) {
+        if (!onMoveCb || typeof(onMoveCb) === 'function') {
+            onMoveCb = (disk, from, to) => console.log(`Disk ${disk} from ${from} to ${to}.`);
+        }
+
+        return solveHanoiTowers(numberOfDisks, fromRod, toRod, auxRod, onMoveCb);
+    }
 };
